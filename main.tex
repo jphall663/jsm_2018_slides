@@ -133,9 +133,9 @@
 			
 			\begin{itemize}
 				
-				\item Given a learned function $g$ and set of predictions, $g(\mathbf{X}) = \hat{\mathbf{Y}}$, a surrogate DT can be trained: $ \mathbf{X}, g(\mathbf{X}) \xrightarrow{\mathcal{A}_{\text{surrogate}}} h_{\text{tree}}$.
+				\item Given a learned function $g$ and set of predictions $g(\mathbf{X})$, a surrogate DT can be trained: $ \mathbf{X}, g(\mathbf{X}) \xrightarrow{\mathcal{A}_{\text{surrogate}}} h_{\text{tree}}$.
 		
-				\item $h_{\text{tree}}$ displays a low-fidelity, highly interpretable flow chart of $g$'s decision making process, and important features and interactions in $g$.	
+				\item $h_{\text{tree}}$ displays a low-fidelity, high-interpretability flow chart of $g$'s decision making process, and important features and interactions in $g$.	
 			
 			\end{itemize}
 			
@@ -151,9 +151,9 @@
 	
 				\item Prescribed methods (\cite{dt_surrogate1}; \cite{dt_surrogate2}) for training $h_{\text{tree}}$ do exist. In practice, straightforward cross-validation approaches are typically sufficient. 
 				
-				\item Comparing cross-validated error to standard training error can give an indication of the stability of the single tree model, $h_{\text{tree}}$.
+				\item Comparing cross-validated training error to traditional training error can give an indication of the stability of the single tree model, $h_{\text{tree}}$.
 				
-				\item \cite{lime-sup} use local linear surrogate models, $h_{\text{GLM}}$, in $h_{\text{tree}}$ leaf nodes to increase overall surrogate model fidelity while retaining a high degree of interpretability.
+				\item \cite{lime-sup} use local linear surrogate models, $h_{\text{GLM}}$, in $h_{\text{tree}}$ leaf nodes to increase overall surrogate model fidelity while also retaining a high degree of interpretability.
 				
 			\end{itemize}
 			
@@ -171,13 +171,13 @@
 			
 				\begin{itemize}
 					
-					\item Following \cite{esl} a single feature $X_j \in \mathbf{X}$, a $P$-dimensional feature space,  and its complement set $X_{(-j)}$ (where $X_j \cup X_{(-j)} = \mathbf{X}$) is considered.
+					\item Following \cite{esl} a single feature $X_j \in \mathbf{X}$ and its complement set $X_{(-j)}$ (where $X_j \cup X_{(-j)} = \mathbf{X}$) is considered.
 					
-					\item $\text{PD}(X_j, g)$ for a given feature $X_j$ is estimated as the average of the output of the learned function $g$, where all the components of $X_j$ are set to a constant $x^{(i)}_j \in X_j$, and $\mathcal{P}_{(-j)}$ is left untouched.
+					\item $\text{PD}(X_j, g)$ for a given feature $X_j$ is estimated as the average of the output of the learned function $g$, where all the components of $X_j$ are set to a constant $x \in \mathcal{X}$, and $X_{(-j)}$ is left untouched.
 					
-					\item $\text{ICE}(\mathbf{x}^{(i)}_j, g)$ for a given row $\mathbf{x}^{(i)}$ and feature $X_j$ is estimated as the output of the learned function $g$ where $x^{(i)}_j$ is set to a constant $x^{(i)}_j \in X_j$ and $\mathbf{x}^{(i)} \in\mathcal{P}_{(-j)}$ are left untouched.
+					\item $\text{ICE}(\mathbf{x}^{(i)}_j, g)$ for a given observation $\mathbf{x}^{(i)}$ and feature $X_j$ is estimated as the output of the learned function $g$ where $x^{(i)}_j$ is set to a constant $x \in \mathcal{X}$ and $\mathbf{x}^{(i)} \in X_{(-j)}$ are left untouched.
 					
-					\item PD and ICE are usually plotted over some set of interesting $x^{(i)}_j \in X_j$. 
+					\item PD and ICE are usually plotted over some set of interesting constants $x \in \mathcal{X}$. 
 				
 				\end{itemize}
 			
@@ -191,7 +191,7 @@
 				\begin{center}
 					\includegraphics[height=100pt]{img/pdp_ice.png}
 					\label{fig:pdp_ice}
-					\caption{PD and ICE curves for $ X_j = \text{num}_9$, for known signal generating function $f(\mathbf{X}) = \text{num} _1 * \text{num}_4 + |\text{num}_8| * \text{num}_9^2 + e$, and for machine-learned GBM response function $g(\mathbf{X})$.}
+					\caption{PD and ICE curves for $ X_j = \text{num}_9$, for known signal generating function $f(\mathbf{X}) = \text{num} _1 * \text{num}_4 + |\text{num}_8| * \text{num}_9^2 + e$, and for machine-learned GBM response function $g$.}
 				\end{center}
 			\end{figure}
 			
@@ -211,7 +211,7 @@
 					\begin{center}
 						\label{fig:dt_surrogate_pdp_ice}
 						\includegraphics[height=95pt]{img/dt_surrogate2_pdp_ice2.png}
-						\caption{Surrogate DT, PD, and ICE curves for $ X_j = \text{num}_9$, for known signal generating function $f(\mathbf{X}) = \text{num} _1 * \text{num}_4 + |\text{num}_8| * \text{num}_9^2 + e$, and for machine-learned GBM response function $g(\mathbf{X})$.}
+						\caption{Surrogate DT, PD, and ICE curves for $ X_j = \text{num}_9$, for known signal generating function $f(\mathbf{X}) = \text{num} _1 * \text{num}_4 + |\text{num}_8| * \text{num}_9^2 + e$, and for machine-learned GBM response function $g$.}
 					\end{center}
 				\end{figure}
 			
@@ -227,7 +227,7 @@
 		
 			\frametitle{Local Interpretable Model-agnostic Explanations (LIME)}
 			
-				\cite{lime} defines LIME for some $x^{(i)}_j \in \mathbf{X}$:
+				\cite{lime} defines LIME for some observation $\mathbf{x} \in \mathcal{X}$:
 			
 				\begin{equation*}
 					\begin{aligned}
@@ -239,7 +239,7 @@
 			
 				\vspace{5pt}
 			
-				Typically, $h_{GLM}$ is constructed such that $\mathbf{X}^{(*)}, g({X}^{(*)}) \xrightarrow{\mathcal{A}_{\text{surrogate}}} h_{\text{GLM}}$, where $\mathbf{X}^{(*)}$ is a generated sample, $\pi_{\mathbf{X}}$ weighs $\mathbf{X}^{(*)}$ samples by their Euclidean similarity to $x^{(i)}_j$, local feature importance is estimated using $\beta_j x^{(i)}_j$, and $L_1$ regularization is used to induce a simplified, sparse $g$. 		
+				Typically, $h_{GLM}$ is constructed such that $\mathbf{X}^{(*)}, g({X}^{(*)}) \xrightarrow{\mathcal{A}_{\text{surrogate}}} h_{\text{GLM}}$, where $\mathbf{X}^{(*)}$ is a generated sample, $\pi_{\mathbf{X}}$ weighs $\mathbf{X}^{(*)}$ samples by their Euclidean similarity to $\mathbf{x}$, local feature importance is estimated using $\beta_j x_j$, and $L_1$ regularization is used to induce a simplified, sparse $h_{GLM}$. 		
 			
 			
 		\end{frame}
@@ -274,9 +274,9 @@
 		
 			\begin{itemize}
 		
-				\item Try LIME on discretized input features and on manually constructed interactions.
+				\item To increase the fidelity of LIME explanations, try LIME on discretized input features and on manually constructed interactions.
 
-				\item Use cross-validation to construct standard deviations or even confidence intervals for local variable importance values.
+				\item Use cross-validation to construct standard deviations or even confidence intervals for local feature importance values.
 
 				\item LIME can fail, particularly in the presence of extreme nonlinearity or high-degree interactions.
 		
@@ -288,15 +288,47 @@
 	\section{Tree Shap}
 %-------------------------------------------------------------------------------
 
-		\begin{frame}
+		\begin{frame}[t]
 		
-			\frametitle{Tree Shap - \textit{Description}}
+			\frametitle{Tree Shap}
+		
+			Shapley explanations are a class of additive, consistent local feature importance measures with long-standing theoretical support, \cite{shapley}. For some observation $\mathbf{x} \in \mathcal{X}$, Shapley explanations take the form:
+			
+			\vspace{-5pt}
+			
+			\begin{equation*}
+				\begin{aligned}
+					\phi_0 + \sum_{j=0}^{j=\mathcal{P} - 1} \phi_j \mathbf{x}_j^\prime
+				\end{aligned}
+			\end{equation*}
+			
+			Here $\mathbf{x}^\prime \in \{0,1\}^\mathcal{P}$ is a binary representation of $\mathbf{x}$ where 0 indicates missingness. Each $\phi_j$ is the local feature importance value associated with $x_j$.
+			
+			\begin{itemize}
+			
+				\item Calculating Shapley values directly is typically infeasible, but they can be estimated in different ways.
+			
+				\item Tree Shap is a specific implementation of Shapley explanations that leverages DT structures to disaggregrate the contribution of each $x_j$ to $g(\mathbf{x})$ in a DT or DT-based ensemble model. \cite{tree_shap}
+				
+			\end{itemize}
 			
 		\end{frame}
 	
 		\begin{frame}
 		
-			\frametitle{Tree Shap - \textit{Recommendations}}
+			\frametitle{Tree Shap}
+			
+			\begin{itemize}
+				
+				\item Tree Shap is ideal for high-fidelity explanations of DT-based models, perhaps even in regulated applications.
+				
+				\item Local feature importance values are offsets from a global intercept.
+				
+				\item LIME can be constrained to become Shapley explanations. 
+				
+				\item A similar, popular method known as \textit{treeinterpreter} appears untrustworthy when applied to GBM models. 
+				
+			\end{itemize}
 			
 		\end{frame}
 
@@ -345,8 +377,7 @@
 			\vspace{10pt}
 		
 			\textbf{In-depth Explanatory Technique Examples:}\\
-			\href{https://github.com/jphall663/interpretable_machine_learning_with_python}{
-			https://github.com/jphall663/interpretable\_machine\_learning\_with\_python}\\
+			\href{https://github.com/jphall663/interpretable_machine_learning_with_python}{https://github.com/jphall663/interpretable\_machine\_learning\_with\_python}\\
 			
 			\vspace{10pt}
 			
