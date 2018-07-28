@@ -171,13 +171,13 @@
 			
 				\begin{itemize}
 					
-					\item Following \cite{esl} a single feature $X_j \in \mathbf{X}$ and its complement set $X_{(-j)}$ (where $X_j \cup X_{(-j)} = \mathbf{X}$) is considered.
+					\item Following \cite{esl} a single feature $X_j \in \mathbf{X}$ and its complement set $X_{(-j)} \in \mathbf{X}$ (where $X_j \cup X_{(-j)} = \mathbf{X}$) is considered.
 					
-					\item $\text{PD}(X_j, g)$ for a given feature $X_j$ is estimated as the average of the output of the learned function $g$, where all the components of $X_j$ are set to a constant $x \in \mathcal{X}$, and $X_{(-j)}$ is left untouched.
+					\item $\text{PD}(X_j, g)$ for a given feature $X_j$ is estimated as the average output of the learned function $g$ when all the components of $X_j$ are set to a constant $x \in \mathcal{X}$ and $X_{(-j)}$ is left untouched.
 					
-					\item $\text{ICE}(\mathbf{x}^{(i)}_j, g)$ for a given observation $\mathbf{x}^{(i)}$ and feature $X_j$ is estimated as the output of the learned function $g$ where $x^{(i)}_j$ is set to a constant $x \in \mathcal{X}$ and $\mathbf{x}^{(i)} \in X_{(-j)}$ are left untouched.
+					\item $\text{ICE}(X_j, \mathbf{x}^{(i)}, g)$ for a given observation $\mathbf{x}^{(i)}$ and feature $X_j$ is estimated as the output of the learned function $g$ when $x^{(i)}_j$ is set to a constant $x \in \mathcal{X}$ and $\mathbf{x}^{(i)} \in X_{(-j)}$ are left untouched.
 					
-					\item PD and ICE are usually plotted over some set of interesting constants $x \in \mathcal{X}$. 
+					\item PD and ICE curves are usually plotted over some set of interesting constants $x \in \mathcal{X}$. 
 				
 				\end{itemize}
 			
@@ -324,7 +324,7 @@
 				
 				\item Local feature importance values are offsets from a global intercept.
 				
-				\item LIME can be constrained to become Shapley explanations. 
+				\item LIME can be constrained to become Shapley explanations, i.e. kernel shap.
 				
 				\item A similar, popular method known as \textit{treeinterpreter} appears untrustworthy when applied to GBM models. 
 				
