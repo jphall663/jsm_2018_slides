@@ -25,8 +25,8 @@
 \addbibresource{bibliography.bib}
 
 \author{Patrick Hall}
-\title{Machine Learning Explanations}
-\subtitle{The Good, the Bad, and the Ugly}
+\title{A Discussion of Model Explanation Tools}
+\subtitle{with Practical Recommendations}
 \logo{\includegraphics[height=8pt]{img/h2o_logo.png}}
 \institute{\href{https://www.h2o.ai}{H\textsubscript{2}O.ai}}
 \date{Aug. 1 2018}
@@ -54,9 +54,9 @@
 			
 				\begin{itemize}
 					
-					\item \textbf{What is interpretation?} “The	ability	to explain or to present in understandable terms to	a human.” \cite{been_kim1}
+					\item \textbf{What is interpretation?} ``The ability	to explain or to present in understandable terms to	a human.'' (\cite{been_kim1})
 					
-					\item \textbf{What is a good explanation?} "When you can no longer keep asking why." \cite{gilpin2018explaining}
+					\item \textbf{What is a good explanation?} ``When you can no longer keep asking why.'' (\cite{gilpin2018explaining})
 					
 					\item \textbf{Why should you care?}
 					\begin{itemize}
@@ -112,7 +112,7 @@
 				\end{center}
 			\end{figure}
 			
-			The learning problem. Adapted from \cite{lfd}.
+			Adapted from \textbf{Learning From Data} (\cite{lfd}).
 			
 		\end{frame}
 
@@ -156,7 +156,7 @@
 				
 				\item Comparing cross-validated training error to traditional training error can give an indication of the stability of the single tree model, $h_{\text{tree}}$.
 				
-				\item \cite{lime-sup} use local linear surrogate models, $h_{\text{GLM}}$, in $h_{\text{tree}}$ leaf nodes to increase overall surrogate model fidelity while also retaining a high degree of interpretability.
+				\item Hu et al. (\citeyear{lime-sup}) use local linear surrogate models, $h_{\text{GLM}}$, in $h_{\text{tree}}$ leaf nodes to increase overall surrogate model fidelity while also retaining a high degree of interpretability.
 				
 			\end{itemize}
 			
@@ -174,7 +174,7 @@
 			
 				\begin{itemize}
 					
-					\item Following \cite{esl} a single feature $X_j \in \mathbf{X}$ and its complement set $X_{(-j)} \in \mathbf{X}$ (where $X_j \cup X_{(-j)} = \mathbf{X}$) is considered.
+					\item Following Friedman, Hastie, and Tibshirani (\citeyear{esl}) a single feature $X_j \in \mathbf{X}$ and its complement set $X_{(-j)} \in \mathbf{X}$ (where $X_j \cup X_{(-j)} = \mathbf{X}$) is considered.
 					
 					\item $\text{PD}(X_j, g)$ for a given feature $X_j$ is estimated as the average output of the learned function $g$ when all the components of $X_j$ are set to a constant $x \in \mathcal{X}$ and $X_{(-j)}$ is left untouched.
 					
@@ -200,7 +200,7 @@
 			
 			\vspace{-10pt}
 			
-			Overlaying PD and ICE curves is a succinct method for describing global and local prediction behavior and can be used to detect interactions. \cite{ice_plots} 
+			Overlaying PD and ICE curves is a succinct method for describing global and local prediction behavior and can be used to detect interactions. (\cite{ice_plots}) 
 			
 		\end{frame}
 	
@@ -230,7 +230,7 @@
 		
 			\frametitle{Local Interpretable Model-agnostic Explanations (LIME)}
 			
-				\cite{lime} defines LIME for some observation $\mathbf{x} \in \mathcal{X}$:
+				Ribeiro, Singh, and Guestrin (\citeyear{lime}) define LIME for some observation $\mathbf{x} \in \mathcal{X}$:
 			
 				\begin{equation*}
 					\begin{aligned}
@@ -257,7 +257,7 @@
 			
 				\item Always use regression fit measures to assess the trustworthiness of LIME explanations.
 			
-				\item LIME can be difficult to deploy, but there are highly deployable variants. \cite{lime-sup}; \cite{h2o_mli_booklet}
+				\item LIME can be difficult to deploy, but there are highly deployable variants. (\cite{lime-sup}; \cite{h2o_mli_booklet})
 			
 				\item Local feature importance values are offsets from a local intercept.
 				
@@ -295,7 +295,7 @@
 		
 			\frametitle{Tree Shap}
 		
-			Shapley explanations are a class of additive, consistent local feature importance measures with long-standing theoretical support, \cite{shapley}. For some observation $\mathbf{x} \in \mathcal{X}$, Shapley explanations take the form:
+			Shapley explanations are a class of additive, consistent local feature importance measures with long-standing theoretical support (\cite{shapley}). For some observation $\mathbf{x} \in \mathcal{X}$, Shapley explanations take the form:
 			
 			\vspace{-5pt}
 			
@@ -311,7 +311,7 @@
 			
 				\item Calculating Shapley values directly is typically infeasible, but they can be estimated in different ways.
 			
-				\item Tree Shap is a specific implementation of Shapley explanations that leverages DT structures to disaggregrate the contribution of each $x_j$ to $g(\mathbf{x})$ in a DT or DT-based ensemble model. \cite{tree_shap}
+				\item Tree Shap is a specific implementation of Shapley explanations that leverages DT structures to disaggregrate the contribution of each $x_j$ to $g(\mathbf{x})$ in a DT or DT-based ensemble model. (\cite{tree_shap})
 				
 			\end{itemize}
 			
